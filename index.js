@@ -17,12 +17,11 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-app.post("/homepage.html", (req, res) => {
+app.post("/form", (req, res) => {
   const { name, email, message } = req.body;
 
   const date = `${new Date().getDate()}, ${new Date().getMonth() + 1}, ${new Date().getFullYear()}`;
   const data = { name, email, message, date };
-
   async function run() {
     try {
       await client.connect();
@@ -37,7 +36,6 @@ app.post("/homepage.html", (req, res) => {
         }
 
         console.log("Document inserted successfully");
-        res.redirect("/homepage.html");
       });
     } finally {
       console.log("Closing connection!");
@@ -45,7 +43,5 @@ app.post("/homepage.html", (req, res) => {
     }
   }
   run().catch(console.dir);
+  res.redirect("https://google.com");
 });
-// app.get("/homepage.html", (req, res) => {
-//   console.log("Welcome on homepage!");
-// });
