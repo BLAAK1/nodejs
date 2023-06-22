@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const bodyParser = require("body-parser");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri = "mongodb+srv://zegaroskar:Zaq12wsxcdv123@test.i9x3rov.mongodb.net/?retryWrites=true&w=majority";
 
 app.listen(3000, () => console.log("listening at 3000"));
-app.use("/public", express.static("public"));
+// app.use("/public", express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,5 +45,5 @@ app.post("/form", (req, res) => {
     }
   }
   run().catch(console.dir);
-  res.redirect("/public/form.html");
+  res.redirect("/form.html");
 });
