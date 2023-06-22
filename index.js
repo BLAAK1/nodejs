@@ -17,7 +17,7 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-app.post("/form", (req, res) => {
+app.post("/homepage.html", (req, res) => {
   const { name, email, message } = req.body;
 
   const date = `${new Date().getDate()}, ${new Date().getMonth() + 1}, ${new Date().getFullYear()}`;
@@ -46,6 +46,6 @@ app.post("/form", (req, res) => {
   }
   run().catch(console.dir);
 });
-app.get("/homepage.html", (req, res) => {
-  console.log("Welcome on homepage!");
-});
+// app.get("/homepage.html", (req, res) => {
+//   console.log("Welcome on homepage!");
+// });
