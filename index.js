@@ -43,5 +43,5 @@ app.post("/form", (req, res) => {
     }
   }
   run().catch(console.dir);
-  res.redirect("./form.html.html");
+  res.redirect("./form.htm");
 });
