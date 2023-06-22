@@ -7,31 +7,21 @@
     <title>Data Selfie App</title>
   </head>
   <body>
-    <script>
-      async function handleSubmit(e) {
-        e.preventDefault();
-        const fullName = document.getElementById("fullName").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
+    <form action="/form" method="POST">
+      <div class="mb-3">
+        <label for="name-reg" class="form-label">Imie i nazwisko</label>
+        <input type="text" class="form-control" id="name-reg" name="name" required minlength="4" />
+      </div>
+      <div class="mb-3">
+        <label for="email-reg" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email-reg" name="email" required minlength="4" />
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label">Wiadomość</label>
+        <input type="text" class="form-control" id="message" name="message" required minlength="5" />
+      </div>
 
-        const data = { fullName, email, message };
-        const options = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        };
-        const response = await fetch("/api", options);
-        const json = await response.json();
-        console.log(json);
-      }
-    </script>
-    <form onsubmit="handleSubmit">
-      <input type="text" id="fullName" placeholder="Imię" /><br />
-      <input type="text" id="email" placeholder="E-mail" /><br />
-      <input type="text" id="message" placeholder="Wiadomość" /><br />
-      <button type="submit">Wyślij</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </body>
 </html>
