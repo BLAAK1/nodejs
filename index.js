@@ -39,9 +39,9 @@ app.post("/form", (req, res) => {
       });
     } finally {
       console.log("Closing connection!");
-      res.redirect("./form.html");
       await client.close();
     }
   }
   run().catch(console.dir);
+  res.redirect("./form.html");
 });

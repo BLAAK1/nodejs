@@ -4,24 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Data Selfie App</title>
+    <link rel="stylesheet" href="./main.css" />
+    <title>Formularz</title>
   </head>
   <body>
-    <form action="/form" method="POST">
-      <div class="mb-3">
-        <label for="name-reg" class="form-label">Imie i nazwisko</label>
-        <input type="text" class="form-control" id="name-reg" name="name" required minlength="4" />
-      </div>
-      <div class="mb-3">
-        <label for="email-reg" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email-reg" name="email" required minlength="4" />
-      </div>
-      <div class="mb-3">
-        <label for="message" class="form-label">Wiadomość</label>
-        <input type="text" class="form-control" id="message" name="message" required minlength="5" />
-      </div>
+    <header></header>
+    <main></main>
+    <footer>
+      <form action="/form" method="POST">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="name-reg" name="name" required minlength="4" placeholder="Twoję imię i nazwisko" />
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" id="email-reg" name="email" required minlength="4" placeholder="Twój adres e-mail" />
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" id="message" name="message" required minlength="5" placeholder="Twoja wiadomość" resize="none"></textarea>
+        </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <button type="submit" class="btn btn-primary">Wyślij</button>
+      </form>
+    </footer>
   </body>
 </html>
