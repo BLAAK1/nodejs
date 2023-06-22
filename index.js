@@ -19,7 +19,7 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-app.post("/form", (req, res) => {
+app.post("/submit", (req, res) => {
   const { name, email, message } = req.body;
 
   const date = `${new Date().getDate()}, ${new Date().getMonth() + 1}, ${new Date().getFullYear()}`;
