@@ -22,7 +22,7 @@ app.post("/form", (req, res) => {
 
   const date = `${new Date().getDate()}, ${new Date().getMonth() + 1}, ${new Date().getFullYear()}`;
   const data = { name, email, message, date };
-  res.redirect("/homepage.html");
+
   async function run() {
     try {
       await client.connect();
@@ -37,6 +37,7 @@ app.post("/form", (req, res) => {
         }
 
         console.log("Document inserted successfully");
+        res.redirect("/homepage.html");
       });
     } finally {
       console.log("Closing connection!");
