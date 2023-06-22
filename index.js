@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri = "mongodb+srv://zegaroskar:Zaq12wsxcdv123@test.i9x3rov.mongodb.net/?retryWrites=true&w=majority";
 
@@ -7,6 +8,7 @@ app.listen(3000, () => console.log("listening at 3000"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -41,5 +43,5 @@ app.post("/form", (req, res) => {
     }
   }
   run().catch(console.dir);
-  res.redirect("./form.html");
+  res.redirect("/form.html");
 });
