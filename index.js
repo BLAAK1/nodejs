@@ -17,27 +17,35 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-app.post("/form", async (req, res) => {
+app.post("/form", (req, res) => {
   const { name, email, message } = req.body;
 
   const date = `${new Date().getDate()}, ${new Date().getMonth() + 1}, ${new Date().getFullYear()}`;
   const data = { name, email, message, date };
 
-  try {
-    await client.connect();
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  async function run() {
+    try {
+      await client.connect();
+      await client.db("admin").command({ ping: 1 });
+      console.log("Pinged your deployment. You successfully connected to MongoDB!");
+      const collection = await client.db("CustomersMessages").collection("CustomersMessages");
+      await collection.insertOne(data, (err, result) => {
+        console.log("Insterting data!");
+        if (err) {
+          console.error("Failed to insert document:", err);
+          return;
+        }
 
-    const collection = await client.db("CustomersMessages").collection("CustomersMessages");
-    await collection.insertOne(data);
-    console.log("Data inserted successfully");
-
-    res.redirect("/homepage.html"); // Redirect after data insertion
-  } catch (err) {
-    console.error("Failed to insert document:", err);
-    // Handle error if data insertion fails
-  } finally {
-    console.log("Closing connection!");
-    await client.close();
+        console.log("Document inserted successfully");
+        res.redirect("/homepage.html");
+      });
+    } finally {
+      console.log("Closing connection!");
+      await client.close();
+    }
   }
+  run().catch(console.dir);
+});
+app.get("/homepage.html", (req, res) => {
+  console.log("Welcome on homepage!");
 });
