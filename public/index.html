@@ -8,14 +8,21 @@
     <title>Formularz</title>
   </head>
   <body>
-    <script>
-      if ("geolocation" in navigator) {
-        console.log("geolocation available");
-        navigator.geolocation.getCurrentPosition(function (position) {
-          console.log(position.coords.latitude, position.coords.longitude);
-        });
-      }
-    </script>
-    <h1>P</h1>
+    <header></header>
+    <main></main>
+    <footer>
+      <form action="/form" method="POST">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="name-reg" name="name" required minlength="4" placeholder="Twoję imię i nazwisko" />
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" id="email-reg" name="email" required minlength="4" placeholder="Twój adres e-mail" />
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" id="message" name="message" required minlength="5" placeholder="Twoja wiadomość" resize="none"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Wyślij</button>
+      </form>
+    </footer>
   </body>
 </html>
