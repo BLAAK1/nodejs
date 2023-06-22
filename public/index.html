@@ -3,17 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Data Selfie App</title>
   </head>
   <body>
     <script>
-      if ("geolocation" in navigator) {
-        console.log("geolocation available");
-        navigator.geolocation.getCurrentPosition(function (position) {
-          console.log(position.coords.latitude, position.coords.longitude);
-        });
+      async function handleSubmit(e) {
+        e.preventDefault();
+        const fullName = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        const data = { fullName, email, message };
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch("/api", options);
+        const json = await response.json();
+        console.log(json);
       }
     </script>
-    <h1>P</h1>
+    <form onsubmit="handleSubmit">
+      <input type="text" id="fullName" placeholder="Imię" /><br />
+      <input type="text" id="email" placeholder="E-mail" /><br />
+      <input type="text" id="message" placeholder="Wiadomość" /><br />
+      <button type="submit">Wyślij</button>
+    </form>
   </body>
 </html>
