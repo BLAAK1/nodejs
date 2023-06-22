@@ -22,6 +22,7 @@ app.post("/form", (req, res) => {
 
   const date = `${new Date().getDate()}, ${new Date().getMonth() + 1}, ${new Date().getFullYear()}`;
   const data = { name, email, message, date };
+  res.redirect("/homepage.html");
   async function run() {
     try {
       await client.connect();
@@ -43,5 +44,4 @@ app.post("/form", (req, res) => {
     }
   }
   run().catch(console.dir);
-  res.redirect("/homepage.html");
 });
