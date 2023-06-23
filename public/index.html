@@ -5,13 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
     <title>Formularz</title>
   </head>
   <body>
-    <header></header>
+    <header>
+      <section class="background-light">
+        <img src="/assets/blob1.svg"/>
+        <img src="/assets/blob2.svg"/>
+        <img src="/assets/blob3.svg"/>
+      </section>
+      <section class="header-content">
+        <section class="navbar">
+          <section class="logo">
+            <img src="/assets/Logo.svg">
+          </section>
+          <section class="navbar-list">
+            <ul>
+              <li>Strona główna</li>
+              <li>Portfolio</li>
+              <li>Kontakt</li>
+            </ul>
+          </section>
+        </section>
+        <section class="aboutme">
+          <section class="aboutme-text">
+            <p>Lorem ipsum....</p>
+            <h3>W czym mogę ci pomóc</h3>
+            <p>Lorem ipsum dolor sit amet consectetur. Vestibulum dignissim viverra in gravida.</p>
+            <button>Kontakt</button>
+          </section>
+          <section class="aboutme-img">
+            <img src="/assets/profile.png" height="200px"/>
+          </section>
+        </section>
+      </section>
+    </header>
     <main></main>
     <footer>
-      <form action="submit" method="post">
+      <section class="footer-section footer-left">
+        <h2>Kontakt</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin cursus euismod. Praesent lacinia metus ut elit iaculis elementum. Vivamus eu tortor lorem. Vestibulum ac consequat ligula. Pellentesque arcu lorem, scelerisque a nisi ac, suscipit rhoncus libero. Fusce ultrices sodales arcu at scelerisque. Vestibulum faucibus justo ut velit suscipit egestas.
+        <ul>
+          <li>Pustków 497, 39-206 Pustków</li>
+          <li>123 642 123</li>
+          <li>Cabajówka</li>
+          <li>Cabajowkaaa</li>
+        </ul>
+      </section>
+      <section class="footer-section footer-right">
+        <form action="submit" method="post">
         <div class="mb-3">
           <input type="text" class="form-control" id="name-reg" name="name" required minlength="4" placeholder="Twoję imię i nazwisko" />
         </div>
@@ -23,6 +68,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Wyślij</button>
       </form>
+      </section>
     </footer>
   </body>
 </html>
