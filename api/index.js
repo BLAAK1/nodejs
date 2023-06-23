@@ -4,7 +4,7 @@ require("dotenv").config();
 const uri = process.env.URI;
 const { MongoClient, ServerApiVersion } = require("mongodb");
 app.listen(3000, () => console.log("listening at 3000"));
-app.use(express.static("public"));
+app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
 
