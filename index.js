@@ -5,7 +5,7 @@ const uri = process.env.URI;
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 // Serve static files from the root folder
-app.use(express.static(__dirname + "/../"));
+app.use(express.static("public"));
 
 // Parse URL-encoded and JSON request bodies
 app.use(express.urlencoded({ extended: false }));
@@ -19,7 +19,7 @@ const client = new MongoClient(uri, {
   },
 });
 
-app.post("/api/submit", (req, res) => {
+app.post("/submit", (req, res) => {
   const { name, email, message } = req.body;
 
   const date = `${new Date().getDate()}.${
