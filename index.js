@@ -19,9 +19,9 @@ const client = new MongoClient(uri, {
 app.post("/submit", (req, res) => {
   const { name, email, message } = req.body;
 
-  const date = `${new Date().getDate()}, ${
+  const date = `${new Date().getDate()}.${
     new Date().getMonth() + 1
-  }, ${new Date().getFullYear()}`;
+  }.${new Date().getFullYear()}`;
   const data = { name, email, message, date };
   async function run() {
     try {
@@ -48,5 +48,5 @@ app.post("/submit", (req, res) => {
     }
   }
   run().catch(console.dir);
-  res.redirect("./form.html");
+  res.redirect("/form.html");
 });
