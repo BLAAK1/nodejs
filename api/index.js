@@ -3,9 +3,12 @@ const app = express();
 require("dotenv").config();
 const uri = process.env.URI;
 const { MongoClient, ServerApiVersion } = require("mongodb");
-app.listen(3000, () => console.log("listening at 3000"));
-app.use(express.static("./public"));
-app.use(express.urlencoded({ extended: "false" }));
+
+// Serve static files from the root folder
+app.use(express.static(__dirname + "/../"));
+
+// Parse URL-encoded and JSON request bodies
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const client = new MongoClient(uri, {
@@ -15,13 +18,15 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-app.post("/submit", (req, res) => {
+
+app.post("/api/submit", (req, res) => {
   const { name, email, message } = req.body;
 
   const date = `${new Date().getDate()}.${
     new Date().getMonth() + 1
   }.${new Date().getFullYear()}`;
   const data = { name, email, message, date };
+
   async function run() {
     try {
       await client.connect();
@@ -29,11 +34,14 @@ app.post("/submit", (req, res) => {
       console.log(
         "Pinged your deployment. You successfully connected to MongoDB!"
       );
+
       const collection = client
         .db("CustomersMessages")
         .collection("CustomersMessages");
+
       await collection.insertOne(data, (err, result) => {
-        console.log("Insterting data!");
+        console.log("Inserting data!");
+
         if (err) {
           console.error("Failed to insert document:", err);
           return;
@@ -46,6 +54,9 @@ app.post("/submit", (req, res) => {
       await client.close();
     }
   }
+
   run().catch(console.dir);
   res.redirect("/form.html");
 });
+
+app.listen(3000, () => console.log("Listening at http://localhost:3000"));
