@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
+const uri = process.env.URI;
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri =
-  "mongodb+srv://zegaroskar:Zaq12wsxcdv123@test.i9x3rov.mongodb.net/?retryWrites=true&w=majority";
-
 app.listen(3000, () => console.log("listening at 3000"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: "false" }));
