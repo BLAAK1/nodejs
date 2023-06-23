@@ -1,16 +1,13 @@
 const express = require("express");
 const app = express();
-const path = require("path");
-const bodyParser = require("body-parser");
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri = "mongodb+srv://zegaroskar:Zaq12wsxcdv123@test.i9x3rov.mongodb.net/?retryWrites=true&w=majority";
+const uri =
+  "mongodb+srv://zegaroskar:Zaq12wsxcdv123@test.i9x3rov.mongodb.net/?retryWrites=true&w=majority";
 
 app.listen(3000, () => console.log("listening at 3000"));
-// app.use("/public", express.static("public"));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -22,14 +19,20 @@ const client = new MongoClient(uri, {
 app.post("/submit", (req, res) => {
   const { name, email, message } = req.body;
 
-  const date = `${new Date().getDate()}, ${new Date().getMonth() + 1}, ${new Date().getFullYear()}`;
+  const date = `${new Date().getDate()}, ${
+    new Date().getMonth() + 1
+  }, ${new Date().getFullYear()}`;
   const data = { name, email, message, date };
   async function run() {
     try {
       await client.connect();
       await client.db("admin").command({ ping: 1 });
-      console.log("Pinged your deployment. You successfully connected to MongoDB!");
-      const collection = await client.db("CustomersMessages").collection("CustomersMessages");
+      console.log(
+        "Pinged your deployment. You successfully connected to MongoDB!"
+      );
+      const collection = client
+        .db("CustomersMessages")
+        .collection("CustomersMessages");
       await collection.insertOne(data, (err, result) => {
         console.log("Insterting data!");
         if (err) {
@@ -45,5 +48,5 @@ app.post("/submit", (req, res) => {
     }
   }
   run().catch(console.dir);
-  res.redirect("/form.html");
+  res.redirect("./form.html");
 });
